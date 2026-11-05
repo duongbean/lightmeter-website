@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi" data-lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lightmeter Support</title>
+<meta name="description" content="Hỗ trợ và hướng dẫn sử dụng app đo sáng.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Big+Shoulders+Display:wght@700;800&family=IBM+Plex+Mono:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="wrap top">
+  <a class="brand" href="index.html" data-app>Lightmeter</a>
+  <div class="langs" role="group" aria-label="Language">
+    <button type="button" data-lang-btn="vi" aria-pressed="true">VI</button>
+    <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+  </div>
+</header>
+<main class="wrap doc">
+  <h1><span data-l="vi">Hỗ trợ</span><span data-l="en">Support</span></h1>
+
+  <section data-contact-row>
+    <h2><span data-l="vi">Liên hệ</span><span data-l="en">Contact</span></h2>
+    <p><a data-contact></a></p>
+  </section>
+
+  <section data-l="vi">
+    <h2>Số đo lệch so với máy khác</h2>
+    <ol>
+      <li>Đo cùng một mảng xám đều bằng cả hai máy.</li>
+      <li>Vào nút lưới, mục Calibration, chỉnh offset đến khi hai số khớp.</li>
+    </ol>
+    <p>App đo phản xạ, nên luôn coi vùng đo là xám 18%. Tuyết hoặc vật rất tối cần bù sáng bằng EV.</p>
+  </section>
+  <section data-l="en">
+    <h2>Readings differ from another meter</h2>
+    <ol>
+      <li>Meter the same even grey subject with both.</li>
+      <li>Open the grid button, go to Calibration, and shift the offset until they match.</li>
+    </ol>
+    <p>The app reads reflected light, so it treats the metered area as 18% grey. Snow or very dark subjects need EV compensation.</p>
+  </section>
+
+  <section data-l="vi">
+    <h2>Khoảng cách hiện dấu "—"</h2>
+    <p>Cảm biến không đọc được vật trong ô vàng. LiDAR chỉ tới khoảng 5 m. Hãy đặt ô vàng lên vật gần hơn.</p>
+  </section>
+  <section data-l="en">
+    <h2>Distance shows a dash</h2>
+    <p>The sensor can't read what's in the yellow patch. LiDAR reaches about 5 m, so try something closer.</p>
+  </section>
+
+  <section data-l="vi">
+    <h2>Báo lỗi trong bản thử</h2>
+    <p>Trong app TestFlight, mở <span data-app>Lightmeter</span> và chọn Send Beta Feedback, hoặc chụp màn hình trong app rồi chọn gửi góp ý.</p>
+  </section>
+  <section data-l="en">
+    <h2>Report a beta problem</h2>
+    <p>In the TestFlight app, open <span data-app>Lightmeter</span> and choose Send Beta Feedback, or take a screenshot in the app and send it as feedback.</p>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <span><span data-app>Lightmeter</span> · <span data-l="vi">Bản thử</span><span data-l="en">Beta</span></span>
+    <nav>
+      <a href="privacy.html"><span data-l="vi">Quyền riêng tư</span><span data-l="en">Privacy</span></a>
+      <a href="support.html"><span data-l="vi">Hỗ trợ</span><span data-l="en">Support</span></a>
+    </nav>
+  </div>
+</footer>
+<script src="config.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

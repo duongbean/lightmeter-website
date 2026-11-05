@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="vi" data-lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lightmeter</title>
+<meta name="description" content="Máy đo sáng cho nhiếp ảnh film trên iPhone: đo sáng, đo khoảng cách và theo dõi cuộn phim trên cùng một màn hình.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Big+Shoulders+Display:wght@700;800&family=IBM+Plex+Mono:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="wrap top">
+  <a class="brand" href="index.html" data-app>Lightmeter</a>
+  <div class="langs" role="group" aria-label="Language">
+    <button type="button" data-lang-btn="vi" aria-pressed="true">VI</button>
+    <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+  </div>
+</header>
+<main>
+<div class="wrap hero">
+  <div class="hero-copy">
+    <h1><span data-l="vi">Đo sáng cho máy film, ngay trên iPhone</span><span data-l="en">A film light meter in your iPhone</span></h1>
+    <p class="lede" data-l="vi">Chạm vào chỗ bạn quan tâm. App cho biết tốc độ, khẩu độ và khoảng cách tại đúng điểm đó, rồi ghi vào cuộn phim đang chụp.</p>
+    <p class="lede" data-l="en">Tap the part of the scene you care about. The app gives you shutter speed, aperture and distance at that exact spot, then logs it to the roll you're shooting.</p>
+    <div class="reading" aria-hidden="true"><span>1/250</span><span>f/8</span><span>ISO 800</span><b>2.40 m</b></div>
+    <a class="cta" data-cta href="#"><span data-l="vi">Tham gia TestFlight</span><span data-l="en">Join on TestFlight</span></a>
+  </div>
+  <figure class="phone">
+    <img src="assets/meter.jpg" width="644" height="1400" alt="Màn hình đo sáng: ô vàng ở giữa khung ngắm, khoảng cách 2.40 m, thước khẩu độ, tốc độ 1/250 f/8 và nút HOLD">
+    <figcaption><span data-l="vi">Ảnh chụp từ simulator với cảnh minh họa. Trên iPhone, khung ngắm là hình từ camera.</span><span data-l="en">Simulator capture with an illustrated scene. On an iPhone, the viewfinder shows the camera.</span></figcaption>
+  </figure>
+</div>
+<div class="scale" aria-hidden="true">
+  <div class="scale-strip"><div class="scale-labels"><span>f/1</span><span>f/1.4</span><span>f/2</span><span>f/2.8</span><span>f/4</span><span>f/5.6</span><span>f/8</span><span>f/11</span><span>f/16</span><span>f/22</span><span>f/32</span><span>f/45</span><span>f/64</span></div>
+  <div class="scale-ticks"></div></div>
+</div>
+
+<section id="calc-section">
+  <div class="wrap">
+    <div class="calc-head">
+      <h2><span data-l="vi">Thử phép tính</span><span data-l="en">Try the maths</span></h2>
+      <p data-l="vi">Đây là công thức app dùng. Trên iPhone, độ sáng cảnh đến từ camera; ở đây bạn tự kéo.</p>
+      <p data-l="en">This is the formula the app uses. On an iPhone, scene brightness comes from the camera. Here, you set it yourself.</p>
+    </div>
+    <form class="calc" id="calc">
+      <div id="scene-window">
+        <div class="vf-top"><span id="out-lv">LV 11</span><span id="out-scene"></span></div>
+        <div class="patch" aria-hidden="true">+</div>
+        <div class="vf-read" role="status" aria-live="polite">
+          <strong id="out-shutter">1/60</strong>
+          <span id="out-aperture">f/8</span>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="field">
+          <label for="lv"><span data-l="vi">Độ sáng cảnh (LV)</span><span data-l="en">Scene brightness (LV)</span></label>
+          <input type="range" id="lv" name="lv" min="-2" max="16" step="1" value="11">
+        </div>
+        <div class="pair">
+          <div class="field">
+            <label for="iso">ISO</label>
+            <select id="iso" name="iso"><option>100</option><option>200</option><option selected>400</option><option>800</option><option>1600</option><option>3200</option></select>
+          </div>
+          <div class="field">
+            <label for="aperture"><span data-l="vi">Khẩu độ</span><span data-l="en">Aperture</span></label>
+            <select id="aperture" name="aperture"><option value="1">f/1.4</option><option value="2">f/2</option><option value="3">f/2.8</option><option value="4">f/4</option><option value="5">f/5.6</option><option value="6" selected>f/8</option><option value="7">f/11</option><option value="8">f/16</option><option value="9">f/22</option></select>
+          </div>
+          <div class="field">
+            <label for="nd"><span data-l="vi">Kính ND</span><span data-l="en">ND filter</span></label>
+            <select id="nd" name="nd"><option value="1">—</option><option value="8">ND8</option><option value="64">ND64</option><option value="1000">ND1000</option></select>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" id="hp5" name="hp5"><span><span data-l="vi">Bù reciprocity cho Ilford HP5 Plus</span><span data-l="en">Correct reciprocity for Ilford HP5 Plus</span></span></label>
+        <p id="out-note" hidden></p>
+        <p id="out-formula"></p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section>
+  <div class="wrap feature">
+    <div class="feature-copy">
+      <h2><span data-l="vi">Một ô vàng, hai số đo</span><span data-l="en">One patch, two readings</span></h2>
+      <p data-l="vi">Ô vàng vừa là vùng đo sáng vừa là nơi lấy khoảng cách. Số khoảng cách đi thẳng vào độ sâu trường ảnh, nên bạn thấy luôn dải nét theo khẩu độ và tiêu cự đang chọn.</p>
+      <p data-l="en">The yellow patch is both the metering area and where distance is read. That distance feeds depth of field directly, so the sharp range follows your aperture and focal length.</p>
+      <ul class="facts">
+        <li><b>LiDAR</b><span><span data-l="vi">Trên iPhone Pro, trong khoảng 5 m.</span><span data-l="en">On iPhone Pro models, within about 5 m.</span></span></li>
+        <li><b>≈</b><span><span data-l="vi">Máy hai camera ước lượng khoảng cách, app đánh dấu là xấp xỉ.</span><span data-l="en">Dual-camera iPhones estimate distance, marked as approximate.</span></span></li>
+        <li><b>MANUAL</b><span><span data-l="vi">Máy một camera nhập khoảng cách bằng tay.</span><span data-l="en">Single-camera iPhones take distance by hand.</span></span></li>
+      </ul>
+    </div>
+    <figure class="phone"><img src="assets/dof.jpg" width="644" height="1400" loading="lazy" alt="Màn hình độ sâu trường ảnh: khoảng cách đo được, giới hạn gần, xa và siêu tiêu cự"></figure>
+  </div>
+</section>
+
+<section>
+  <div class="wrap feature flip">
+    <div class="feature-copy">
+      <h2><span data-l="vi">Cuộn phim nằm trong app</span><span data-l="en">Your roll lives in the app</span></h2>
+      <p data-l="vi">Nạp một cuộn và app đặt sẵn ISO, khổ phim và dữ liệu reciprocity. Mỗi lần lưu, số đo được ghi vào đúng khung, còn bộ đếm dưới nút HOLD tăng lên.</p>
+      <p data-l="en">Load a roll and the app sets the speed, format and reciprocity data. Each save goes to the right frame, and the counter under HOLD moves on.</p>
+      <ul class="facts">
+        <li><b>EI</b><span><span data-l="vi">Push và pull, app báo số stop so với ISO gốc.</span><span data-l="en">Push and pull, shown in stops from box speed.</span></span></li>
+        <li><b>135 / 120</b><span><span data-l="vi">Half frame, 35mm, 645, 6x6, 6x7, 6x9.</span><span data-l="en">Half frame, 35mm, 645, 6x6, 6x7, 6x9.</span></span></li>
+        <li><b>CSV</b><span><span data-l="vi">Xuất nhật ký kèm cuộn, khung và khoảng cách.</span><span data-l="en">Export the log with roll, frame and distance.</span></span></li>
+      </ul>
+    </div>
+    <figure class="phone"><img src="assets/rolls.jpg" width="644" height="1400" loading="lazy" alt="Màn hình Film: nút Add roll, cuộn HP5 Plus đang nạp với 11 trên 36 kiểu"></figure>
+  </div>
+</section>
+
+<section>
+  <div class="wrap feature">
+    <div class="feature-copy">
+      <h2><span data-l="vi">Phơi dài, khỏi tính nhẩm</span><span data-l="en">Long exposures, no mental maths</span></h2>
+      <p data-l="vi">Chọn kính ND và loại phim, app tính thời gian đã bù reciprocity. Giữ nút HOLD để mở đồng hồ đếm ngược.</p>
+      <p data-l="en">Pick an ND filter and a film. The app works out the reciprocity-corrected time. Press and hold HOLD to start the countdown.</p>
+      <ul class="facts">
+        <li><b>ND2–ND10000</b><span><span data-l="vi">Tự bù số stop của kính.</span><span data-l="en">Filter stops are applied for you.</span></span></li>
+        <li><b>t^p</b><span><span data-l="vi">17 loại phim, và bạn có thể tự thêm phim khác. Portra, Ektar và Gold là số ước lượng, app ghi rõ.</span><span data-l="en">17 film stocks, and you can add your own. Portra, Ektar and Gold are estimates, and the app says so.</span></span></li>
+      </ul>
+    </div>
+    <figure class="phone"><img src="assets/longexp.jpg" width="644" height="1400" loading="lazy" alt="Phơi dài với ND1000 trên HP5 Plus: app báo thời gian đã bù reciprocity"></figure>
+  </div>
+</section>
+
+<section>
+  <div class="wrap spec-grid">
+    <h2><span data-l="vi">Thông số</span><span data-l="en">Specs</span></h2>
+    <ul class="facts">
+      <li><b>iPhone</b><span><span data-l="vi">iOS 17 trở lên</span><span data-l="en">iOS 17 or later</span></span></li>
+      <li><b>Metering</b><span><span data-l="vi">Spot chạm chọn điểm, hoặc Average toàn khung. Đo phản xạ.</span><span data-l="en">Tap-to-place spot, or whole-frame average. Reflected light.</span></span></li>
+      <li><b>Av / Tv / M</b><span><span data-l="vi">Ưu tiên khẩu, ưu tiên tốc, hoặc thủ công với kim báo thừa thiếu sáng.</span><span data-l="en">Aperture priority, shutter priority, or manual with an over/under scale.</span></span></li>
+      <li><b>1/3 · 1/2 · 1</b><span><span data-l="vi">Bước chỉnh theo vòng số của máy bạn.</span><span data-l="en">Steps that match your camera's clicks.</span></span></li>
+      <li><b>Offline</b><span><span data-l="vi">Không cần tài khoản hay mạng. Dữ liệu nằm trên máy bạn.</span><span data-l="en">No account or connection needed. Your data stays on your phone.</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap beta">
+    <h2><span data-l="vi">Đây là bản thử</span><span data-l="en">This is a beta</span></h2>
+    <p data-l="vi">Mỗi iPhone đo lệch một chút, nên hãy hiệu chuẩn một lần trước khi tin số đo cho một cuộn phim quan trọng.</p>
+    <p data-l="en">Every iPhone reads a little differently, so calibrate once before trusting it with a roll that matters.</p>
+    <ol data-l="vi">
+      <li>Đo cùng một mảng xám đều bằng app và bằng máy đo hoặc máy ảnh bạn tin tưởng.</li>
+      <li>Vào nút lưới, mục Calibration, chỉnh offset đến khi hai số khớp.</li>
+    </ol>
+    <ol data-l="en">
+      <li>Meter the same even grey subject with the app and with a meter or camera you trust.</li>
+      <li>Open the grid button, go to Calibration, and shift the offset until the readings match.</li>
+    </ol>
+    <a class="cta" data-cta href="#"><span data-l="vi">Tham gia TestFlight</span><span data-l="en">Join on TestFlight</span></a>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <span><span data-app>Lightmeter</span> · <span data-l="vi">Bản thử</span><span data-l="en">Beta</span></span>
+    <nav>
+      <a href="privacy.html"><span data-l="vi">Quyền riêng tư</span><span data-l="en">Privacy</span></a>
+      <a href="support.html"><span data-l="vi">Hỗ trợ</span><span data-l="en">Support</span></a>
+    </nav>
+  </div>
+</footer>
+<script src="config.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
